@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const mongoDBconfig = require('./MongoDBconfig');
 
-const productRoute = require('../Server/API/routes/orders')
+const OffersRoute = require('./API/routes/OffersRoute');
 
 mongoose.connect(mongoDBconfig.module.mongoURI, { useNewUrlParser: true })
 .then( () => console.log('Correctly access'))
@@ -32,7 +32,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/orders', productRoute);
+app.use('/offers', OffersRoute);
 
 
 app.use((req, res, next) => {
