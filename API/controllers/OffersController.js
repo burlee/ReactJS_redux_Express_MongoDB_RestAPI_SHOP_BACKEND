@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 exports.add_new_offer = ( req, res, next) => {
     const Product = new ProductSchema({
         productName: req.body.productName,
-        productPrice: req.body.productPrice
+        productPrice: req.body.productPrice,
+        productImgUrl: req.body.productImgUrl
     });
 
     Product
@@ -24,7 +25,7 @@ exports.add_new_offer = ( req, res, next) => {
 exports.get_all_offers = (req, res, next) => {
     ProductSchema
         .find()
-        .select('_id productName productPrice')
+        .select('_id productName productPrice productImgUrl')
         .exec()
         .then( productResult => {
             console.log( productResult )
@@ -34,7 +35,8 @@ exports.get_all_offers = (req, res, next) => {
                     return{
                         id: product._id,
                         productName: product.productName,
-                        productPrice: product.productPrice
+                        productPrice: product.productPrice,
+                        productImgUrl: product.productImgUrl
                     }
                 })
             }
